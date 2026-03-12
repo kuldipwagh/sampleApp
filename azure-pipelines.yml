@@ -25,32 +25,8 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
 
-
-
-
-    trigger:
-- main
-
-pool:
-  name: Default
-
-steps:
-
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.x'
-
-- script: dotnet restore
-  displayName: Restore dependencies
-
-- script: dotnet build --configuration Release
-  displayName: Build project
-
-- script: dotnet publish --configuration Release --output $(Build.ArtifactStagingDirectory)
-  displayName: Publish project
-
- - task: AzureWebApp@1
+- task: AzureWebApp@1
+  displayName: Deploy to Azure Web App
   inputs:
     azureSubscription: 'Azure-Service-Connection'
     appName: 'sampleApp'
