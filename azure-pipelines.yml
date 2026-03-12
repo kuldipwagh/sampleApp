@@ -11,13 +11,13 @@ steps:
     packageType: 'sdk'
     version: '8.x'
 
-- script: dotnet restore
+- script: dotnet restore WebApplication1/WebApplication1.csproj
   displayName: Restore dependencies
 
-- script: dotnet build --configuration Release
+- script: dotnet build WebApplication1/WebApplication1.csproj --configuration Release
   displayName: Build project
 
-- script: dotnet publish --configuration Release --output $(Build.ArtifactStagingDirectory)
+- script: dotnet publish WebApplication1/WebApplication1.csproj --configuration Release --output $(Build.ArtifactStagingDirectory)
   displayName: Publish project
 
 - task: PublishBuildArtifacts@1
